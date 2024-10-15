@@ -3,234 +3,152 @@
 @tailwind utilities;
 
 body {
-  --black: #000000;
-  --ash-black: #222;
-  --white: #fafafa;
-  --sky: #00ccff;
-  --green: #22dddd;
-  --blue: #1300ff;
-  --dusk: #6600ff;
-  --purple: #9900ff;
-  --pink: #ff0066;
-  --red: #fe0222;
-  --orange: #fd7702;
-  --yellow: #ffbb00;
-
-  --background: var(--pink);
-  --accent: var(--white);
-
-  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #ff0055;
+  overflow: hidden;
   padding: 0;
-  background-color: var(--background);
-  color: var(--accent);
-  padding-bottom: 100px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.window {
+  width: 480px;
+  height: 360px;
+  border-radius: 10px;
+  background: white;
+  overflow: hidden;
+  box-shadow: 0 1px 1px hsl(0deg 0% 0% / 0.075),
+    0 2px 2px hsl(0deg 0% 0% / 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075),
+    0 8px 8px hsl(0deg 0% 0% / 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075);
+  display: flex;
+  flex-direction: column;
+}
+
+nav {
+  background: #fdfdfd;
+  padding: 5px 5px 0;
+  border-radius: 10px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: 1px solid #eeeeee;
+  height: 44px;
+  display: grid;
+  grid-template-columns: 1fr 35px;
+  max-width: 480px;
   overflow: hidden;
 }
 
-#root {
+.tabs {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  flex-wrap: nowrap;
+  width: 420px;
+  padding-right: 10px;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 128px;
+  flex-grow: 1;
+  user-select: none;
+}
+
+ul,
+li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+li {
+  border-radius: 5px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  width: 100%;
+  padding: 10px 15px;
+  position: relative;
+  background: white;
+  cursor: pointer;
+  height: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  position: relative;
+  user-select: none;
+}
+
+li span {
+  flex-shrink: 1;
+  flex-grow: 1;
+  line-height: 18px;
+  white-space: nowrap;
+  display: block;
+  min-width: 0;
+  padding-right: 30px;
+  mask-image: linear-gradient(to left, transparent 20px, #fff 40px);
+  -webkit-mask-image: linear-gradient(to left, transparent 20px, #fff 40px);
+}
+
+li .close {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+li button {
+  width: 20px;
+  height: 20px;
+  border: 0;
+  background: #fff;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  stroke: #000;
+  margin-left: 10px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.background {
   position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
-  right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 300px;
+  background: #fff;
 }
 
-* {
-  font-family: sofia-pro, sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-}
-
-h1,
-h2,
-h3 {
-  font-family: sofia-pro, sans-serif;
-  font-weight: 600;
-  font-style: normal;
-}
-
-h1 {
-  font-size: 36px;
-  font-weight: 700;
-  letter-spacing: -1px;
-  line-height: 1.2;
-  text-align: center;
-  margin: 100px 0 40px;
-}
-
-h2 {
-  font-weight: 400;
-  margin: 50px 0 10px;
-}
-
-p {
-  margin: 0 0 30px 0;
-  font-size: 18px;
-}
-
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 20px;
-  border-top: 1px dotted var(--accent);
-  background-color: transparent;
-  background-image: radial-gradient(circle at 50% 50%,
-      var(--background) 20%,
-      transparent 20.5%,
-      transparent 49.5%,
-      var(--background) 50%);
-
-  background-size: 15px 15px;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px) brightness(30%);
-  -moz-backdrop-filter: blur(20px) brightness(30%);
-  font-size: 14px;
-  line-height: 14px;
-}
-
-footer svg {
-  margin-right: 20px;
-}
-
-footer a {
-  text-decoration: none;
-  color: var(--accent);
-}
-
-code {
-  font-family: input-mono, monospace;
-  font-weight: 400;
-  font-style: normal;
-}
-
-#progress {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  transform: rotate(-90deg);
-}
-
-circle {
-  stroke-dashoffset: 0;
-  stroke-width: 15%;
-  fill: none;
-}
-
-.bg {
-  stroke: var(--accent);
-  opacity: 0.3;
-}
-
-#progress .indicator {
-  stroke: var(--accent);
-}
-
-::-webkit-scrollbar {
-  height: 5px;
-  width: 5px;
-  background: var(--background);
-  -webkit-border-radius: 1ex;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--accent);
-  -webkit-border-radius: 1ex;
-}
-
-::-webkit-scrollbar-corner {
-  background: #fff3;
-}
-
-.refresh {
-  padding: 5px;
-  position: absolute;
-  border: 1px dotted var(--accent);
-  border-radius: 5px;
-  width: 20px;
-  height: 20px;
-  top: 10px;
-  right: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-
-.refresh path {
-  fill: var(--accent);
-}
-
-.box {
-  width: 150px;
-  height: 150px;
+.add-item {
+  width: 30px;
+  height: 30px;
+  background: #eee;
   border-radius: 50%;
-  background: var(--accent);
-  margin: 0;
-}
-
-button {
-  -webkit-appearance: button;
-  background: var(--accent);
-  color: var(--background);
-  border: none;
-  padding: 15px 25px;
-  border-radius: 50px;
-  font-size: 18px;
-  font-weight: 700;
-  cursor: pointer;
-  width: 100px;
-}
-
-input {
-  accent-color: var(--accent);
-}
-
-.controls {
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  padding-top: 50px;
-}
-
-label {
-  display: flex;
-  align-items: center;
-  margin: 10px 0;
-}
-
-label code {
-  width: 100px;
-}
-
-input[type="number"] {
   border: 0;
-  border-bottom: 1px dotted var(--accent);
-  color: var(--accent);
-  margin-left: 10px;
-  background: var(--background);
-  width: 50px;
+  cursor: pointer;
+  align-self: center;
 }
 
-input[type="number"]:focus {
-  outline: none;
-  border-bottom: 2px solid var(--accent);
-}
-
-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-}
-
-.example {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.add-item:disabled {
+  opacity: 0.4;
+  cursor: default;
+  pointer-events: none;
 }
